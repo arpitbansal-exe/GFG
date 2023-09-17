@@ -1,21 +1,12 @@
-
-import React,{useEffect, useState} from 'react'
+import React,{useState} from 'react'
 import Logo from "../Assets/Logo.png"
-
-
-
-import { useNavigate } from 'react-router-dom';
+import Style from "../Components/Styles/Login.module.css"
+import { Link, useNavigate } from 'react-router-dom';
 export default function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   if(localStorage.getItem('user-info')){
-
-  //     navigate('/home');
-  //   }
-  // }, [])
 
   async function login() {
   
@@ -41,30 +32,35 @@ export default function Login() {
       alert("Invalid Credentials");
     }
   }
+  function createAccount(){
+    alert("Create Account was clicked");
+  }
 
-
+  
   return (
-    <div className="container">
-      <div className="design">
+    <div className={Style.all}>
+    <div className={Style.container}>
+      <div className={Style.design}>
       <img src={Logo} alt="" />
       </div>
-      <div className="login">
-        <h3 className="title">User Login</h3>
-        <div className="text-input">
+      <div className={Style.login}>
+        <h3 className={Style.tile}>User Login</h3>
+        <div className={Style.text_input}>
           <i className="ri-user-fill"></i>
-          <input type="email" placeholder="Username" onChange={(e)=>setEmail(e.target.value)} />
+          <input className={Style.inputs} type="email" placeholder="Username" onChange={(e)=>setEmail(e.target.value)} />
         </div>
-        <div className="text-input">
+        <div className={Style.text_input}>
           <i className="ri-lock-fill"></i>
-          <input type="password" placeholder="Password" onChange={(e)=>setPassword(e.target.value)} />
+          <input className={Style.inputs} type="password" placeholder="Password" onChange={(e)=>setPassword(e.target.value)} />
         </div>
-        <button className="login-btn" onClick={login}>LOGIN</button>
-        <a href="#" className="forgot">Forgot Username/Password?</a>
-        <div className="create">
-          <a href="#">Create Your Account</a>
+        <button className={Style.login_btn} onClick={login}>LOGIN</button>
+        <Link to="/resetPassword" className={Style.forgot}>Forgot Username/Password?</Link>
+        <div className={Style.create}>
+          <a onClick={createAccount}>Create Your Account</a>
           <i className="ri-arrow-right-fill"></i>
         </div>
       </div>
+    </div>
     </div>
   )
 }
