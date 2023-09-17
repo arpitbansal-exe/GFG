@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import Logo from '../Assets/logo.jpeg'
+import Logo from '../Assets/logo1.png'
 import React,{useEffect, useState} from 'react'
 export default function Navbar() {
     const [user, setUser] = useState("Welcome Geek");
