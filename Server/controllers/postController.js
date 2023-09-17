@@ -23,6 +23,7 @@ const createPost = asyncHandler(async (req, res) => {
     });
     if(post){
         res.status(201).json({
+            title:"post created",
             _id:post._id,
             Title:post.Title,
             Description:post.Description,

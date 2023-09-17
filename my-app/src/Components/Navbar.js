@@ -20,8 +20,11 @@ export default function Navbar() {
             window.location.href="/login";
         }
         else{
+            
             localStorage.clear();
             window.location.href="/";
+            alert("Logout Sucessfull");
+            
         }
     }
 
@@ -39,6 +42,9 @@ export default function Navbar() {
                     <ul className="navbar-nav">
                         <li className="nav-item active">
                             <Link className="nav-link" to="/">Home </Link>
+                        </li>
+                        <li className="nav-item ">
+                            <Link className="nav-link" to="/dsa">DSA</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/team">Team</Link>

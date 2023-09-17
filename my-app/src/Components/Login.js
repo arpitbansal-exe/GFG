@@ -1,29 +1,28 @@
 
 import React,{useEffect, useState} from 'react'
-import { Link } from 'react-router-dom'
 import Logo from "../Assets/Logo.png"
-import "./Styles/Login.css"
+
 
 
 import { useNavigate } from 'react-router-dom';
 export default function Login() {
 
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  useEffect(() => {
-    if(localStorage.getItem('user-info')){
+  // useEffect(() => {
+  //   if(localStorage.getItem('user-info')){
 
-      navigate('/home');
-    }
-  }, [])
+  //     navigate('/home');
+  //   }
+  // }, [])
 
   async function login() {
   
     let item = {email,password};
     console.warn(item);
-    let res=await fetch("http://localhost:5000/user/signin",{
+    // let res=await fetch("http://localhost:5000/user/signin",{
+    let res=await fetch("/user/signin",{
       method:"POST",
       headers:{
         "Content-Type":"application/json",
@@ -33,7 +32,7 @@ export default function Login() {
     });
     res=await res.json();
 
-    if(res.title=="Signin sucsessfull"){
+    if(res.title==="Signin sucsessfull"){
       localStorage.setItem("user-info",JSON.stringify(res));
       navigate('/home');
 
