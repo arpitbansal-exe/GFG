@@ -1,12 +1,35 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import Logo from '../Assets/logo.jpeg'
+import React,{useEffect, useState} from 'react'
 export default function Navbar() {
+    const [user, setUser] = useState("Welcome Geek");
+    const [state, setState] = useState("Login");
+
+    useEffect(() => {
+        if(localStorage.getItem('user-info')){
+            setState("Logout");
+            setUser("Welcome "+JSON.parse(localStorage.getItem('user-info')).name);
+        }
+        else{
+            setState("Login");
+            setUser("Welcome Geek");
+        }
+      }, [])
+    function LoginLogout(){
+        if(state==="Login"){
+            window.location.href="/login";
+        }
+        else{
+            localStorage.clear();
+            window.location.href="/";
+        }
+    }
+
+
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                {/* <Link className="navbar-brand" to="/">GFG MIT</Link> */}
-                <Link class="navbar-brand"  style={{marginLeft:5}} to="/">
+                <Link className="navbar-brand"  style={{marginLeft:5}} to="/">
                     <img src={Logo} width="50" height="50" alt=""/>
                 </Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,8 +47,13 @@ export default function Navbar() {
                             <Link className="nav-link" to="/about">About</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link float-right" to="/login">Login</Link>
+                            <Link className="nav-link "  >{user} </Link>
                         </li>
+                        <li className="nav-item ml-auto">
+                            <Link className="nav-link mr-10" onClick={LoginLogout}> {state} </Link>
+                        </li>
+
+
 
                     </ul>
                 </div>

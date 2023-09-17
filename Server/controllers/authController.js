@@ -1,7 +1,7 @@
 import asyncHandler from "express-async-handler";
 import bcrypt from "bcrypt";
 import User from "../models/Users.js";
-import jwt from "jsonwebtoken";
+
 
 const signup= asyncHandler(async(req, res) => {
 
@@ -37,7 +37,6 @@ const signup= asyncHandler(async(req, res) => {
     });
     if(user){
         console.log("User created successfully");
-        res.redirect('/home.html')
         res.status(200).json({_id:user._id, email:user.email});
     }else{
         res.status(400);
@@ -58,15 +57,8 @@ const signin = asyncHandler(async (req, res) => {
     
     if(user && (await bcrypt.compare(password, user.password))){
         console.log("User signed in successfully");
-        const accessToken=jwt.sign({
-            user:{
-                email:user.email,
-                name:user.name,
-                _id:user._id,
-            }
-        }, process.env.JWT_SECRET, {expiresIn:"1d"})
-        res.redirect('/home.html')
-        res.status(200).json({message: "Signin sucsessfull",accessToken});
+        
+        res.status(200).json({title: "Signin sucsessfull", email:user.email, role:user.role, name:user.name, year:user.year, enrollmentNo:user.enrollmentNo});
     }
     else{
         res.status(400);
