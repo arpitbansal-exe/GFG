@@ -57,7 +57,7 @@ export default function Navbar() {
                         <li className="nav-item mx-3 my-.5 ">
                             <p className="navbar-text">{user}</p>
                         </li>
-                        <li class="nav-item ">
+                        <li className="nav-item ">
                             <button className="nav-btn btn btn-primary my-.3" onClick={LoginLogout}>{state}</button>
                         </li>    
                     </ul>

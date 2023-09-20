@@ -6,11 +6,11 @@ export default function Home() {
   return (
     <div>
       <Navbar />
-      <div class="wrapper">
-        <p class="line__1">Conquering <span class="green-text">DSA.</span></p>
-        <p class="line__2">Creating with <span class="green-text">Web-Dev.</span></p>
-        <p class="line__3">Daily <span class="green-text">Tech-Bytes.</span></p>
-        <p class="line__4">Peer to Peer <span class="green-text">Learning.</span></p>
+      <div className="wrapper">
+        <p className="line__1">Conquering <span className="green-text">DSA.</span></p>
+        <p className="line__2">Creating with <span className="green-text">Web-Dev.</span></p>
+        <p className="line__3">Daily <span className="green-text">Tech-Bytes.</span></p>
+        <p className="line__4">Peer to Peer <span className="green-text">Learning.</span></p>
       </div>
     </div>
   );

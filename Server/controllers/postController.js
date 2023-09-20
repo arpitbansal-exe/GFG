@@ -15,6 +15,11 @@ const getallPosts = asyncHandler(async (req, res) => {
 
 const createPost = asyncHandler(async (req, res) => {
     const {Title,Description,difficulty,link} = req.body;
+    const TitleUsed=await Post.findOne({Title});
+    if(TitleUsed){
+        res.status(400);
+        throw new Error("Title already used");
+    }
     const post = await Post.create({
         Title,
         Description,
