@@ -1,11 +1,16 @@
-import mongoose from "mongoose";
+import mongoose, { trusted } from "mongoose";
 import validator from "validator";
 
 const userSchema = new mongoose.Schema({
-    name:{
+    fname:{
         type:String,
         required:[true,"IMPORTANT"],
-        unique:true,
+        trim:true,
+        max:30
+    },
+    lname:{
+        type:String,
+        required:[true,"IMPORTANT"],
         trim:true,
         max:30
     },

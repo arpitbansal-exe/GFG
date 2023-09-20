@@ -1,0 +1,126 @@
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+  }
+  
+  .line__1,
+  .line__2,
+  .line__3,
+  .line__4 {
+    white-space: nowrap;
+    overflow: hidden;
+    font-family: "Courier New", monospace;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: left;
+  }
+  
+  .line__1 {
+    border-right: 2px solid rgba(17, 17, 17, 0.9);
+    animation: animated-text__1 2.5s steps(15, end) 1s 1 normal both,
+      animated-cursor__1 900ms steps(30, end) 8 normal both;
+  }
+  
+  .line__2 {
+    border-right: 2px solid rgba(17, 17, 17, 0.9);
+    animation: animated-text__2 4s steps(15, end) 1s 1 normal both,
+      animated-cursor__1 900ms steps(30, end) 8 normal both;
+    -webkit-animation-delay: 7s;
+    animation-delay: 5s;
+  }
+  
+  .line__3 {
+    border-right: 2px solid rgba(17, 17, 17, 0.9);
+    animation: animated-text__3 4s steps(15, end) 1s 1 normal both,
+      animated-cursor__1 900ms steps(30, end) 8 normal both;
+    animation-delay: 9s;
+  }
+  
+  .line__4 {
+    border-right: 2px solid rgba(17, 17, 17, 0.9);
+    animation: animated-text__4 5s steps(30, end) 1s 1 normal both,
+      animated-cursor__4 900ms steps(30, end) 8;
+    animation-delay: 14s;
+  }
+
+.green-text {
+  color: #35763F;
+  font-weight: bolder;
+}
+
+  
+  @keyframes animated-cursor__1 {
+    from {
+      border-right-color: rgba(17, 17, 17, 0.9);
+    }
+    to {
+      border-right-color: rgba(255, 255, 255, 0.8);
+    }
+  }
+  
+  @keyframes animated-cursor__2 {
+    from {
+      border-right-color: rgba(17, 17, 17, 0.9);
+    }
+    to {
+      border-right-color: rgba(255, 255, 255, 0.8);
+    }
+  }
+  
+  @keyframes animated-cursor__3 {
+    from {
+      border-right-color: rgba(17, 17, 17, 0.9);
+    }
+    to {
+      border-right-color: rgba(255, 255, 255, 0.8);
+    }
+  }
+  
+  @keyframes animated-cursor__4 {
+    from {
+      border-right-color: rgba(17, 17, 17, 0.9);
+    }
+    to {
+      border-right-color: rgba(255, 255, 255, 0.8);
+    }
+  }
+  
+  @keyframes animated-text__1 {
+    from {
+      width: 0;
+    }
+    to {
+      width: 18rem;
+    }
+  }
+  
+  @keyframes animated-text__2 {
+    from {
+      width: 0;
+    }
+    to {
+      width: 26.3rem;
+    }
+  }
+  
+  @keyframes animated-text__3 {
+    from {
+      width: 0;
+    }
+    to {
+      width: 20rem;
+    }
+  }
+  
+  @keyframes animated-text__4 {
+    from {
+      width: 0;
+    }
+    to {
+      width: 26.3rem;
+    }
+  }
