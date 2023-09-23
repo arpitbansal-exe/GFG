@@ -13,6 +13,8 @@ const getallPosts = asyncHandler(async (req, res) => {
   res.status(200).json(posts);
 });
 
+
+
 const createPost = asyncHandler(async (req, res) => {
     const {Title,Description,difficulty,link} = req.body;
     const TitleUsed=await Post.findOne({Title});
@@ -62,4 +64,19 @@ const Comment = asyncHandler(async (req, res) => {
 
 });
 
-export { getallPosts, createPost, Comment };
+const getPostByTitle = asyncHandler(async (req, res) => {
+    console.log("try");
+    const {Title} = req.body;
+    console.log(Title);
+    const post = await Post.findOne({Title});
+    if(post) {
+        res.json(post);
+    } else {
+        res.status(404);
+        throw new Error('Post not found');
+    }
+    res.json(Title);
+    });
+
+
+export { getallPosts, createPost, Comment, getPostByTitle };

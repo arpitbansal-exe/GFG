@@ -6,6 +6,7 @@ import Team from "./Components/Team";
 import Login from "./Components/Login";
 import About from "./Components/About";
 import DSA from "./Components/DSA";
+import DSADetail from "./Components/DSADetail";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
 
@@ -20,6 +21,7 @@ function App() {
           <Route exact path="team" element={<Team />} />
           <Route exact path="about" element={<About />} />
           <Route exact path="login" element={<Login />} />
+          <Route exact path="/dsa/:Title" element={<DSADetail />} />
           <Route path="*" element={<NoPage />} />
       </Routes>
     </BrowserRouter>   
