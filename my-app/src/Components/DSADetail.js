@@ -52,6 +52,12 @@ function CardDetail() {
       body:JSON.stringify(item)
     });
     res=await res.json();
+    if(res.title==="comment added"){
+      alert("Comment Added Successfully");
+    }
+    else{
+      alert("Error Occured");
+    }
     Get();
   }
   return (

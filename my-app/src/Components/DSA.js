@@ -66,6 +66,8 @@ export default function DSA() {
         <span key={card.Title} className="card">
           <Link to={`/dsa/${card.Title}`}>
             <h3>{card.Title}</h3>
+            <h6>{card.difficulty}</h6>
+
           </Link>
         </span>
       ))}
