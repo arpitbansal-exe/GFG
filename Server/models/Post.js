@@ -22,8 +22,12 @@ const postSchema = new mongoose.Schema({
     link:{
         type:String,
         required:[true,"IMPORTANT"],
-    }
-    
+    },
+    comments:[{
+        text:String,
+        postedBy:String
+         
+    }],    
 });
 
 const Post=mongoose.model("Post",postSchema);

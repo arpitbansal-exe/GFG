@@ -39,4 +39,27 @@ const createPost = asyncHandler(async (req, res) => {
         throw new Error("Invalid post data");
     }   
 });
-export {getallPosts, createPost}; 
+
+const Comment = asyncHandler(async (req, res) => {
+    const {postId,text,postedBy} = req.body;
+    const post = await Post.findById(postId);
+    if(post){
+        const comment={
+            text,
+            postedBy
+        }
+        post.comments.push(comment);
+        const updatedPost=await post.save();
+        res.status(201);
+        res.json({
+            title:"comment added"
+        });
+    }else{
+        res.status(404);
+        throw new Error("Post not found");
+    }
+    console.log("try");
+
+});
+
+export { getallPosts, createPost, Comment };
