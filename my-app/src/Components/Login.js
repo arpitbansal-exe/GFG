@@ -12,7 +12,6 @@ export default function Login() {
   
     let item = {email,password};
     console.warn(item);
-    // let res=await fetch("http://localhost:5000/user/signin",{
     let res=await fetch("/user/signin",{
       method:"POST",
       headers:{
@@ -24,7 +23,7 @@ export default function Login() {
     res=await res.json();
 
     if(res.title==="Signin sucsessfull"){
-      localStorage.setItem("user-info",JSON.stringify(res));
+      localStorage.setItem("token-info",JSON.stringify(res));
       navigate('/home');
 
     }

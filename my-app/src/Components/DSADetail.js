@@ -34,20 +34,19 @@ function CardDetail() {
   }
 
   async function addComment() {
-    if(localStorage.getItem("user-info")==null){
+    if(localStorage.getItem("token-info")==null){
       alert("Please Login First");
       return;
     }
     
     let postId=data._id;
-    let postedBy=JSON.parse(localStorage.getItem('user-info')).fname
-
-    let item = {postId,text,postedBy};
+    let item = {postId,text};
     let res=await fetch("/post/comment",{
       method:"POST",
       headers:{
         "Content-Type":"application/json",
         "Accept":"application/json",
+        "Authorization":"Bearer "+JSON.parse(localStorage.getItem('token-info')).token
       },
       body:JSON.stringify(item)
     });

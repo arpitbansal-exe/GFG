@@ -1,7 +1,7 @@
 import asyncHandler from "express-async-handler";
 import bcrypt from "bcrypt";
 import User from "../models/Users.js";
-
+import jwt from "jsonwebtoken";
 
 const signup= asyncHandler(async(req, res) => {
 
@@ -55,8 +55,10 @@ const signin = asyncHandler(async (req, res) => {
     
     if(user && (await bcrypt.compare(password, user.password))){
         console.log("User signed in successfully");
+        const token=jwt.sign({id:user._id,email:user.email,username:user.fname}, process.env.JWT_SECRET, {expiresIn:"1d"});
         
-        res.status(200).json({title: "Signin sucsessfull", email:user.email, role:user.role, fname:user.fname,lname:user.lname, year:user.year, enrollmentNo:user.enrollmentNo});
+        // res.status(200).json({title: "Signin sucsessfull", email:user.email, role:user.role, fname:user.fname,lname:user.lname, year:user.year, enrollmentNo:user.enrollmentNo});
+        res.status(200).json({title:"Signin sucsessfull",token});
     }
     else{
         res.status(400);
@@ -69,7 +71,14 @@ const signout=asyncHandler(async (req, res) => {
 }
 );
 const currentUser = asyncHandler(async (req, res) => {
-    res.json(req.user);
+    let email=req.user.email;
+    const us=await User.findOne({email}).select("-password");;
+    if(us){
+        res.json(us);
+    }else{
+        res.status(404);
+        throw new Error("User not found");
+    }
   });
 
 export {signup, signin, signout, currentUser};  

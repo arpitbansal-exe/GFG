@@ -43,7 +43,12 @@ const createPost = asyncHandler(async (req, res) => {
 });
 
 const Comment = asyncHandler(async (req, res) => {
-    const {postId,text,postedBy} = req.body;
+    let postedBy=req.user.username;
+    console.log(postedBy);
+    const {postId,text} = req.body;
+    console.log(postedBy);
+    console.log(postId);
+    console.log(text);
     const post = await Post.findById(postId);
     if(post){
         const comment={

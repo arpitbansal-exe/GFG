@@ -1,4 +1,5 @@
 import express from 'express';
+import validateToken  from '../middleware/ValidateToken.js';
 import { getallPosts, createPost, Comment,getPostByTitle } from '../controllers/postController.js';
 
 
@@ -6,8 +7,8 @@ import { getallPosts, createPost, Comment,getPostByTitle } from '../controllers/
 const router = express.Router();
 
 router.get('/', getallPosts);
-router.post('/create',createPost);
-router.post('/comment',Comment);
+router.post('/create',validateToken,createPost);
+router.post('/comment',validateToken,Comment);
 router.post('/getpost',getPostByTitle);
 
 export default router;
