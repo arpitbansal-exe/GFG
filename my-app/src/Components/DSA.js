@@ -49,6 +49,7 @@ export default function DSA() {
     let url = "http://localhost:5000/post/";
     const response = await fetch(url);
     const ques = await response.json();
+    
     setData(ques);
 
   }
