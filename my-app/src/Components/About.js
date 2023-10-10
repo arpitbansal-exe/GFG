@@ -1,10 +1,14 @@
 import React from 'react'
 import Navbar from './Navbar'
+import Footer from './Footer'
 export default function About() {
   return (
-    <div>
-        <Navbar />
-        <h1>About</h1>
-    </div>
+    <>
+      <Navbar />
+      <h1 className="text-3xl font-bold underline">
+        About Page
+      </h1>
+      <Footer />
+    </>
   )
 }

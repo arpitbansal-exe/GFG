@@ -1,39 +1,57 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from './Navbar'
 import { Link } from 'react-router-dom';
+import Footer from './Footer';
 export default function DSA() {
-  useEffect(() => {
+  const [admin, setadmin] = useState("NO");
+  useEffect(() => {   
+    CurrentUser();
     GetAll();
+    
   }, []);
+  async function CurrentUser() {
+    if (localStorage.getItem('token-info')) {
+      let res = await fetch("/user/current-user", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Authorization": "Bearer " + JSON.parse(localStorage.getItem('token-info')),
+        },
+      });
+      res = await res.json();
+      console.log(res);
+      if (res.title === "Unauthorized") {
+        localStorage.clear();
+        window.location.href = "/";
+        return;
+      }
+      if(res.role==="admin"){
+        setadmin("YES");
+        console.log("set");
+      }
+  }
 
+  }
   async function CreatePost() {
-    let r;
-    try {
-      r = JSON.parse(localStorage.getItem('user-info')).role;
-
-    } catch (error) {
-      alert("Please Login as admin to create post");
+    if (admin !== "YES") {
+        alert("You are not authorized to create post");
       return;
     }
-    if (r !== "admin") {
-      alert("You are not authorized to create post");
-      return;
-    }
-    if (r === "admin") {
+    if (admin === "YES") {
       let item = { "Title": "DSA 8", "Description": "Data Structures and Algorithms", "difficulty": "medium", "link": "https://www.geeksforgeeks.org/data-structures/" }
-      // Currently hardcoded, if button is pressed, a panel will open and show the form to fill
-      let result = await fetch("http://localhost:5000/post/create", {
+      let result = await fetch("/post/create", {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
-          "Accept": "application/json"
+          "Accept": "application/json",
+          "Authorization": "Bearer " + JSON.parse(localStorage.getItem('token-info')),
         },
         body: JSON.stringify(item)
       });
 
-
-
       result = await result.json();
+      console.log(result);
       if (result.title === "post created") {
         alert("Post created successfully");
       }
@@ -46,10 +64,10 @@ export default function DSA() {
 
   const [data, setData] = useState([]);
   async function GetAll() {
-    let url = "http://localhost:5000/post/";
+    let url = "/post/";
     const response = await fetch(url);
     const ques = await response.json();
-    
+
     setData(ques);
 
   }
@@ -57,23 +75,28 @@ export default function DSA() {
     <>
       <Navbar />
 
+      <h1 className="text-3xl font-bold">DSA</h1>
 
-      <h1>DSA</h1>
-      <button onClick={CreatePost}>Create Post</button>
+      <button className="btn btn-neutral ml-2" onClick={CreatePost}>Create Post</button>
+      <div className="h-56 grid grid-cols-5 gap-10 content-center ...">
+          {data.map((card) => (
+            <div key={card.Title} className="card ml-2">
+              <Link to={`/dsa/${card.Title}`}>
+                <div className="card w-96 bg-green-300 text-primary-content">
+                  <div className="card-body">
+                    <h2 className="card-title">{card.Title}</h2>
+                    <p className="card-title">Difficulty: {card.difficulty}</p>
+                    <div className="card-actions justify-end">
+                      <button className="btn">Solve</button>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </div>
+          ))}
+      </div> 
 
-      
-    <div className="DSA-list">
-      {data.map((card) => (
-        <span key={card.Title} className="card">
-          <Link to={`/dsa/${card.Title}`}>
-            <h3>{card.Title}</h3>
-            <h6>{card.difficulty}</h6>
-
-          </Link>
-        </span>
-      ))}
-    </div>
-
+      <Footer />
     </>
   )
 }

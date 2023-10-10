@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from './Navbar';
 import './Styles/Home.css';
+import Footer from './Footer';
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
         <p className="line__3">Daily <span className="green-text">Tech-Bytes.</span></p>
         <p className="line__4">Peer to Peer <span className="green-text">Learning.</span></p>
       </div>
+      <Footer />
     </div>
   );
 }

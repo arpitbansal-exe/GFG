@@ -72,8 +72,8 @@ function CardDetail() {
     </div>
     <br /><br />
     <div>
-      <input type="text" placeholder='Enter a comment' onChange={(e) => setText(e.target.value)}/>
-      <button onClick={addComment}>Add Comment</button>
+      <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs"onChange={(e) => setText(e.target.value)} />
+      <button class="btn btn-accent btn-outline" onClick={addComment}>post</button>
     </div>
 
     <br/><br/>

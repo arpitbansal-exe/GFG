@@ -23,7 +23,7 @@ export default function Login() {
     res=await res.json();
 
     if(res.title==="Signin sucsessfull"){
-      localStorage.setItem("token-info",JSON.stringify(res));
+      localStorage.setItem("token-info",JSON.stringify(res.token));
       navigate('/home');
 
     }
