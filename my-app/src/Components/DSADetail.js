@@ -40,7 +40,12 @@ function CardDetail() {
     }
     
     let postId=data._id;
+    if(text===""){
+      alert("Cannot post empty comment");
+      return;
+    }
     let item = {postId,text};
+
     let res=await fetch("/post/comment",{
       method:"POST",
       headers:{
@@ -68,12 +73,14 @@ function CardDetail() {
       <h4>Description: {data.Description}</h4>
       <h4>Difficulty: {data.difficulty}</h4>
 
-      <Link to={data.link} target='_blank'>Solve Now</Link>
+      <Link className="btn bg-green-400" to={data.link} target='_blank'>
+        <div className="text-white">Solve Now</div>
+      </Link>
     </div>
     <br /><br />
     <div>
       <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs"onChange={(e) => setText(e.target.value)} />
-      <button class="btn btn-accent btn-outline" onClick={addComment}>post</button>
+      <button class="btn btn-accent btn-outline ml-3" onClick={addComment}>post</button>
     </div>
 
     <br/><br/>

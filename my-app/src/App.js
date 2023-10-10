@@ -9,6 +9,7 @@ import DSA from "./Components/DSA";
 import DSADetail from "./Components/DSADetail";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
+import Navbar from "./Components/Navbar";
 
 function App() {
   return (
