@@ -13,7 +13,7 @@ const signup= asyncHandler(async(req, res) => {
     const emailUsed=await User.findOne({email});
     if(emailUsed){
         res.status(400);
-        throw new Error("Email already ");
+        throw new Error("User already exists");
     }
     if(password!==confirmPassword){
         res.status(400);
@@ -33,8 +33,7 @@ const signup= asyncHandler(async(req, res) => {
     });
 
     if(user){
-        console.log("User created successfully");
-        res.status(201).json({title: "Signup sucsessfull", email:user.email, role:user.role, fname:user.fname,lname:user.lname, year:user.year, enrollmentNo:user.enrollmentNo});
+        res.status(201).json({title: "Signup successfull", email:user.email, role:user.role, fname:user.fname,lname:user.lname, year:user.year, enrollmentNo:user.enrollmentNo});
         
     }else{
         res.status(400);

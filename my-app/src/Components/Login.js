@@ -6,12 +6,17 @@ export default function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [fname, setFname] = useState("");
+  const [lname, setLname] = useState("");
+  const [year, setYear] = useState("");
+  const [enrollmentNo, setEnrollmentNo] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
   const navigate = useNavigate();
 
   async function login() {
   
     let item = {email,password};
-    console.warn(item);
     let res=await fetch("/user/signin",{
       method:"POST",
       headers:{
@@ -31,8 +36,32 @@ export default function Login() {
       alert("Invalid Credentials");
     }
   }
-  function createAccount(){
-    alert("Create Account was clicked");
+  async function createAccount(){
+    let role="user";
+    let info = {fname,lname,email,password,confirmPassword,role,year,enrollmentNo};
+    let res=await fetch("/user/signup",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json",
+        "Accept":"application/json",
+      },
+      body:JSON.stringify(info)
+    });
+    res=await res.json();
+    if(res.messgae==="User already exists"){
+      alert("User already exists");
+    }
+    else if(res.message==="Passwords do not match"){
+      alert("Passwords do not match");
+    }
+
+    else if(res.title==="Signup successfull"){
+      localStorage.setItem("token-info",JSON.stringify(res.token));
+      navigate('/home');
+    }
+    else{
+      alert("Invalid Credentials");
+    }
   }
 
   
