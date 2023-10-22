@@ -124,10 +124,10 @@ export default function DSA() {
             <Link to={`/dsa/${card.Title}`}>
               <div className="card w-96 bg-green-300 text-primary-content">
                 <div className="card-body">
-                  <h2 className="card-title text-2xl">{card.Title}</h2>
-                  <p className="card-title text-1xl">Difficulty: {card.difficulty}</p>
+                  <h2 className="card-title text-black text-2xl">{card.Title}</h2>
+                  <p className="card-title text-zinc-800 text-1xl">Difficulty: {card.difficulty}</p>
                   <div className="card-actions justify-end">
-                    <Link className="btn"  >Solve</Link>
+                    <Link className="btn"  to={card.link}>View</Link>
                   </div>
                 </div>
               </div>

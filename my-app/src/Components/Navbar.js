@@ -86,7 +86,7 @@ export default function Navbar() {
         </div>
         <div className="navbar-end">
         <Link className="navbar-text mr-2">{user}</Link>
-        <button className="nav-btn btn btn-primary my-.3" onClick={LoginLogout}>{state}</button>
+        <button className="btn btn-active btn-accent my-.3" onClick={LoginLogout}>{state}</button>
         </div>
       </div>
 
