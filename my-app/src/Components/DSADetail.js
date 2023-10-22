@@ -34,6 +34,8 @@ function CardDetail() {
   }
 
   async function addComment() {
+    console.log("add comment");
+
     if(localStorage.getItem("token-info")==null){
       alert("Please Login First");
       return;
@@ -51,7 +53,7 @@ function CardDetail() {
       headers:{
         "Content-Type":"application/json",
         "Accept":"application/json",
-        "Authorization":"Bearer "+JSON.parse(localStorage.getItem('token-info')).token
+        "Authorization":"Bearer "+JSON.parse(localStorage.getItem('token-info'))
       },
       body:JSON.stringify(item)
     });

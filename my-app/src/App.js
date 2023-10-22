@@ -9,7 +9,7 @@ import DSA from "./Components/DSA";
 import DSADetail from "./Components/DSADetail";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
-import Navbar from "./Components/Navbar";
+import Profile from "./Components/Profile";
 
 function App() {
   return (
@@ -22,6 +22,8 @@ function App() {
           <Route exact path="team" element={<Team />} />
           <Route exact path="about" element={<About />} />
           <Route exact path="login" element={<Login />} />
+          <Route exact path="profile" element={<Profile />} />
+
           <Route exact path="/dsa/:Title" element={<DSADetail />} />
           <Route path="*" element={<NoPage />} />
       </Routes>

@@ -69,18 +69,18 @@ export default function Navbar() {
           <img src={Logo} width="50" height="50" alt="" />
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
+          <ul className="menu menu-horizontal px-1 ">
             <li>
-              <Link className="nav-link" to="/">Home </Link>
+              <Link className="nav-link mx-10 text-xl" to="/">Home </Link>
             </li>
             <li>
-              <Link className="nav-link" to="/dsa">DSA</Link>
+              <Link className="nav-link mx-10 text-xl" to="/dsa">DSA</Link>
             </li>
             <li>
-              <Link className="nav-link" to="/team">Team</Link>
+              <Link className="nav-link mx-10 text-xl" to="/team">Team</Link>
             </li>
             <li>
-              <Link className="nav-link" to="/about">About</Link>
+              <Link className="nav-link mx- text-xl" to="/about">About</Link>
             </li>
           </ul>
         </div>
