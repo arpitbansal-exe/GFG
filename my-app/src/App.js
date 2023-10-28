@@ -11,6 +11,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
 import Profile from "./Components/Profile";
 
+
 function App() {
   return (
     <>
@@ -24,10 +25,12 @@ function App() {
           <Route exact path="login" element={<Login />} />
           <Route exact path="profile" element={<Profile />} />
 
+
           <Route exact path="/dsa/:Title" element={<DSADetail />} />
           <Route path="*" element={<NoPage />} />
       </Routes>
     </BrowserRouter>   
+    
     </>
     
   );

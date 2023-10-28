@@ -4,7 +4,7 @@ import logo from '../Assets/Logo.png'
 
 export default function Footer() {
     return (
-        <footer className="footer p-10 bg-neutral text-neutral-content fixed bottom-0">
+        <footer className="footer mt-5 p-10 bg-neutral text-neutral-content bottom-0">
             <aside>
                 <img width="50" height="50" src={logo} alt='GFG MIT ADT'></img>
                 <p>GeeksforGeeks SC MIT-ADT<br />Empowering students</p>

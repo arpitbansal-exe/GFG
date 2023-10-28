@@ -71,16 +71,16 @@ export default function Navbar() {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 ">
             <li>
-              <Link className="nav-link mx-10 text-xl" to="/">Home </Link>
+              <Link className="nav-link mx-10 text-xl font-bold" to="/">Home </Link>
             </li>
             <li>
-              <Link className="nav-link mx-10 text-xl" to="/dsa">DSA</Link>
+              <Link className="nav-link mx-10 text-xl font-bold" to="/dsa">DSA</Link>
             </li>
             <li>
-              <Link className="nav-link mx-10 text-xl" to="/team">Team</Link>
+              <Link className="nav-link mx-10 text-xl font-bold" to="/team">Team</Link>
             </li>
             <li>
-              <Link className="nav-link mx- text-xl" to="/about">About</Link>
+              <Link className="nav-link mx- text-xl font-bold" to="/about">About</Link>
             </li>
           </ul>
         </div>
