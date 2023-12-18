@@ -1,15 +1,17 @@
 
 import React from "react";
-import Home from "./Components/Home";
-import NoPage from "./Components/NoPage";
-import Team from "./Components/Team";
-import Login from "./Components/Login";
-import About from "./Components/About";
-import DSA from "./Components/DSA";
-import DSADetail from "./Components/DSADetail";
+import Home from "./Pages/Home";
+import NoPage from "./Pages/NoPage";
+import Team from "./Pages/Team";
+import Login from "./Pages/Login";
+import About from "./Pages/About";
+import DSA from "./Pages/DSA";
+import DSADetail from "./Pages/DSADetail";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
-import Profile from "./Components/Profile";
+import Profile from "./Pages/Profile";
+import Footer from "./Components/Footer";
+import EventRegister from "./Pages/EventRegister";
 
 
 function App() {
@@ -24,11 +26,14 @@ function App() {
           <Route exact path="about" element={<About />} />
           <Route exact path="login" element={<Login />} />
           <Route exact path="profile" element={<Profile />} />
+          <Route exact path="register" element={<EventRegister />} />
 
 
           <Route exact path="/dsa/:Title" element={<DSADetail />} />
           <Route path="*" element={<NoPage />} />
+          
       </Routes>
+      <Footer />
     </BrowserRouter>   
     
     </>

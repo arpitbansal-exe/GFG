@@ -21,7 +21,6 @@ const signup= asyncHandler(async(req, res) => {
     }
 
     const hashedPassword=await bcrypt.hash(password, 10);
-    console.log(hashedPassword);
     const user= await User.create({
         fname,
         lname,
@@ -53,7 +52,6 @@ const signin = asyncHandler(async (req, res) => {
     const user=await User.findOne({email});
     
     if(user && (await bcrypt.compare(password, user.password))){
-        console.log("User signed in successfully");
         const token=jwt.sign({id:user._id,email:user.email,username:user.fname}, process.env.JWT_SECRET, {expiresIn:"1d"});
         
         // res.status(200).json({title: "Signin sucsessfull", email:user.email, role:user.role, fname:user.fname,lname:user.lname, year:user.year, enrollmentNo:user.enrollmentNo});

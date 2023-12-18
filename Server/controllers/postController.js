@@ -44,11 +44,7 @@ const createPost = asyncHandler(async (req, res) => {
 
 const Comment = asyncHandler(async (req, res) => {
     let postedBy=req.user.username;
-    console.log(postedBy);
     const {postId,text} = req.body;
-    console.log(postedBy);
-    console.log(postId);
-    console.log(text);
     const post = await Post.findById(postId);
     if(post){
         const comment={
@@ -65,14 +61,10 @@ const Comment = asyncHandler(async (req, res) => {
         res.status(404);
         throw new Error("Post not found");
     }
-    console.log("try");
-
 });
 
 const getPostByTitle = asyncHandler(async (req, res) => {
-    console.log("try");
     const {Title} = req.body;
-    console.log(Title);
     const post = await Post.findOne({Title});
     if(post) {
         res.json(post);

@@ -1,11 +1,11 @@
 import React from 'react';
-import Navbar from './Navbar';
-import './Styles/Home.css';
-import Footer from './Footer';
-import EventCard from './EventCard';
-import { event1img } from './EventImages';
-import { event2img } from './EventImages';
-import PrevEventCard from './PrevEventCard';
+import Navbar from '../Components/Navbar';
+import '../Components/Styles/Home.css';
+import Footer from '../Components/Footer';
+import EventCard from '../Components/EventCard';
+import { event1img } from '../Components/EventImages';
+import { event2img } from '../Components/EventImages';
+import PrevEventCard from '../Components/PrevEventCard';
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 export default function Home() {
@@ -48,8 +48,7 @@ export default function Home() {
       </div>
       <IoIosArrowForward onClick={slideRight} size={35} className='opacity-50 cursor-pointer hover:opacity-100'/>
       </div>    
-      
-      <Footer />
+    
     </div>
   );
 }
