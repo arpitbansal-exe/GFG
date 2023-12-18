@@ -91,7 +91,7 @@ export default function DSA() {
       <div className=' min-h-[85vh]'>
         <Navbar />
 
-        <h1 className="text-4xl ml-2 font-bold mb-5">Data Stucture and Algorithm</h1>
+        <h1 className="text-4xl ml-2 font-bold mt-5 mb-5">Data Stucture and Algorithm</h1>
 
         {visible &&
           <button className="btn btn-neutral ml-2 my-3" onClick={CreatePostbtn}>Create Post</button>
@@ -130,14 +130,14 @@ export default function DSA() {
 
         <div className=" grid grid-cols-1 gap-5 content-center md:grid-cols-5 md:gap-12">
           {data.map((card) => (
-            <div key={card.Title} className="card ml-2">
+            <div key={card.Title} className="card mx-2">
               <Link to={`/dsa/${card.Title}`}>
-                <div className="card w-96 bg-green-300 text-primary-content">
+                <div className="card w-full md:w-96 bg-green-300 text-primary-content">
                   <div className="card-body">
                     <h2 className="card-title text-black text-2xl">{card.Title}</h2>
                     <p className="card-title text-zinc-800 text-1xl">Difficulty: {card.difficulty}</p>
                     <div className="card-actions justify-end">
-                      <Link className="btn" to={card.link}>View</Link>
+                      <div className="btn">View</div>
                     </div>
                   </div>
                 </div>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react'
 
 
-function CardDetail() {
+function DSADetail() {
 
   const { Title } = useParams();
   const [data, setData] = useState([]);
@@ -26,7 +26,8 @@ function CardDetail() {
     });
     ques = await ques.json();
     setData(ques);
-    setComments(ques.comments);
+
+    setComments(ques.comments.reverse());
   }
 
   if (!data) {
@@ -89,13 +90,14 @@ function CardDetail() {
           </div>
 
           <div className="collapse-content">
+
             <div>
               <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" onChange={(e) => setText(e.target.value)} />
-              <button class="btn btn-accent btn-outline ml-3" onClick={addComment}>post</button>
+              <button className="btn btn-accent btn-outline ml-3 mt-2" onClick={addComment}>post</button>
             </div>
             <div className="list">
               {Comments.map((card) => (
-                <div className="chat chat-start">
+                <div key={card._id} className="chat chat-start">
                   <div className="chat-header">
                     {card.postedBy}
                   </div>
@@ -111,5 +113,5 @@ function CardDetail() {
     </>
   );
 }
-export default CardDetail;
+export default DSADetail;
 

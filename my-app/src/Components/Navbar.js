@@ -89,7 +89,7 @@ export default function Navbar() {
           <Link className="navbar-text mr-4 font-semibold text-xl" to="/profile">{user} </Link>
         )
       }
-        <button className="btn btn-active btn-accent my-.3" onClick={LoginLogout}>{state}</button>
+        <button className="btn btn-active btn-accent my-.3 mr-1" onClick={LoginLogout}>{state}</button>
       </div>
     </div>
 

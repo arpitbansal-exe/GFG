@@ -34,7 +34,7 @@ const PrevEventCard = ({ images, text }) => {
         }
     })
     return (
-        <div className='w-[350px] h-[220px] m-4 rounded-2xl shadow-xl relative flex-shrink-0' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+        <div className='w-max-full h-[220px] m-4 rounded-2xl shadow-xl relative flex-shrink-0' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
             <div style={{backgroundImage: `url(${imgarray[current].url})`}} className='w-full h-full rounded-2xl bg-center bg-cover duration-500 '>
 
             <div className="absolute inset-0 bg-green-700 rounded-2xl transition-opacity duration-300 opacity-100 hover:opacity-0 " >
