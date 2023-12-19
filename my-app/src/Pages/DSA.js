@@ -56,24 +56,25 @@ export default function DSA() {
   }
   async function createPost() {
     await axios.post(`${process.env.REACT_APP_BASE_URL}/post/create`, {
-      headers: {
-        "Authorization": "Bearer " + JSON.parse(localStorage.getItem('token-info')),
-      },
       "Title": title,
       "Description": description,
       "difficulty": difficulty,
       "link": link
-    })
-      .then((res) => {
-        if (res.data.title === "post created") {
-          alert("Post created successfully");
-        }
-        else if (res.data.message === "Title already used") {
-          alert("Title already used");
-        }
-      }).catch((err) => {
-        console.log(err);
-      });
+    }, {
+      headers: {
+        "Authorization": "Bearer " + JSON.parse(localStorage.getItem('token-info')),
+      },
+
+    }).then((res) => {
+      if (res.data.title === "post created") {
+        alert("Post created successfully");
+      }
+      else if (res.data.message === "Title already used") {
+        alert("Title already used");
+      }
+    }).catch((err) => {
+      console.log(err);
+    });
   }
   async function GetAll() {
     let url = `${process.env.REACT_APP_BASE_URL}/post/`;
