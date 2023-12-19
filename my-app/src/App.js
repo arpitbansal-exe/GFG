@@ -17,7 +17,7 @@ import EventRegister from "./Pages/EventRegister";
 function App() {
   return (
     <>
-    <BrowserRouter>
+    <BrowserRouter basename="/GFG">
       <Routes>
           <Route index element={<Home />} />
           <Route exact path="home" element={<Home />} />
