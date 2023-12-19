@@ -16,9 +16,9 @@ export default function Login() {
   const navigate = useNavigate();
 
   async function login() {
-    let item = { email, password };
     await axios.post(`${process.env.REACT_APP_BASE_URL}/user/signin`, {
-    body: JSON.stringify(item)
+      "email": email,
+      "password": password
     }).then((res) => {
       console.log(res);
       if (res.data.title === "Signin sucsessfull") {
@@ -37,7 +37,15 @@ export default function Login() {
     let role = "user";
     let info = { fname, lname, email, password, confirmPassword, role, year, enrollmentNo };
     await axios.post(`${process.env.REACT_APP_BASE_URL}/user/signup`, {
-      body: JSON.stringify(info)
+      "fname": fname,
+      "lname": lname,
+      "email": email,
+      "password": password,
+      "confirmPassword": confirmPassword,
+      "role": role,
+      "year": year,
+      "enrollmentNo": enrollmentNo
+      
     }).then((res) => {
       if (res.data.messgae === "User already exists") {
         alert("User already exists");
