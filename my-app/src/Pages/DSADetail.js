@@ -15,9 +15,8 @@ function DSADetail() {
   const [Comments, setComments] = useState([]);
 
   async function Get() {
-    let item = { Title };
     await axios.post(`${process.env.REACT_APP_BASE_URL}/post/getpost`, {
-      body: JSON.stringify(item)
+      "Title": Title
     }).then((res) => {
       setData(res.data);
       setComments(res.data.comments.reverse());

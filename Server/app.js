@@ -9,7 +9,7 @@ const app=express();
 
 
 app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "https://arpitbansal-exe.github.io");
+    res.header("Access-Control-Allow-Origin", "https://gfg-website-frontent.onrender.com");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
     next();
@@ -23,7 +23,7 @@ app.use('/post',postRoutes);
 app.use(errorHandler);
 app.use(express.urlencoded({ extended: true}));
 
-app.use(cors({origin: "http://localhost:3000"}));
+app.use(cors({origin: "https://gfg-website-frontent.onrender.com"}));
 
 
 // app.use(express.static('public'));
