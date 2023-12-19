@@ -55,13 +55,14 @@ export default function DSA() {
 
   }
   async function createPost() {
-    let item = { "Title": title, "Description": description, "difficulty": difficulty, "link": link }
-
     await axios.post(`${process.env.REACT_APP_BASE_URL}/post/create`, {
       headers: {
         "Authorization": "Bearer " + JSON.parse(localStorage.getItem('token-info')),
       },
-      body: JSON.stringify(item)
+      "Title": title,
+      "Description": description,
+      "difficulty": difficulty,
+      "link": link
     })
       .then((res) => {
         if (res.data.title === "post created") {
