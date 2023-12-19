@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import Navbar from '../Components/Navbar';
 import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react'
-
+import axios from 'axios';
 
 function DSADetail() {
 
@@ -16,18 +16,14 @@ function DSADetail() {
 
   async function Get() {
     let item = { Title };
-    let ques = await fetch("/post/getpost", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-      },
+    await axios.post(`${process.env.REACT_APP_BASE_URL}/post/getpost`, {
       body: JSON.stringify(item)
+    }).then((res) => {
+      setData(res.data);
+      setComments(res.data.comments.reverse());
+    }).catch((err) => {
+      console.log(err);
     });
-    ques = await ques.json();
-    setData(ques);
-
-    setComments(ques.comments.reverse());
   }
 
   if (!data) {
@@ -48,24 +44,18 @@ function DSADetail() {
       return;
     }
     let item = { postId, text };
-
-    let res = await fetch("/post/comment", {
-      method: "POST",
+    await axios.post(`${process.env.REACT_APP_BASE_URL}/post/comment`, {
       headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
         "Authorization": "Bearer " + JSON.parse(localStorage.getItem('token-info'))
       },
       body: JSON.stringify(item)
+    }).then((res) => {
+      res.data.title === "comment added" ? alert("Comment Added Successfully") : alert("Error Occured");
+      Get();
+    }).then((err) => {
+      console.log(err);
     });
-    res = await res.json();
-    if (res.title === "comment added") {
-      alert("Comment Added Successfully");
-    }
-    else {
-      alert("Error Occured");
-    }
-    Get();
+
   }
   return (
     <>

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../Components/Navbar';
+import axios from 'axios';
+
 export default function Profile() {
   const [fname,setfname] = useState("");
   const [lname,setlname] = useState("");
@@ -13,28 +15,28 @@ export default function Profile() {
 
   async function CurrentUser() {
     if (localStorage.getItem('token-info')) {
-      let res = await fetch("/user/current-user", {
-        method: "GET",
+      await axios.get(`${process.env.REACT_APP_BASE_URL}/user/current-user`, {
         headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
           "Authorization": "Bearer " + JSON.parse(localStorage.getItem('token-info')),
         },
+      }).then((res) => {
+        if (res.data.title === "Unauthorized") {
+          localStorage.clear();
+          window.location.href = "/";
+          return;
+        }
+        if (res.data) {
+          setfname(res.data.fname);
+          setlname(res.data.lname);
+          setemail(res.data.email);
+          setrole(res.data.role);
+          setenroll(res.data.enrollmentNo);
+          setyear(res.data.year);
+        }
+      }).catch((err) => {
+        console.log(err);
       });
-      res = await res.json();
-      if (res.title === "Unauthorized") {
-        localStorage.clear();
-        window.location.href = "/";
-        return;
-      }
-      if (res) {
-        setfname(res.fname);
-        setlname(res.lname);
-        setemail(res.email);
-        setrole(res.role);
-        setenroll(res.enrollmentNo);
-        setyear(res.year);
-      }
+      
     }
   }
 

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import Logo from '../Assets/logo1.png';
+import Logo from '../Assets/Logo.png';
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 export default function Navbar() {
   const [user, setUser] = useState("Welcome Geek");
@@ -13,24 +14,24 @@ export default function Navbar() {
 
   async function CurrentUser() {
     if (localStorage.getItem('token-info')) {
-      let res = await fetch("http://localhost:5000/user/current-user", {
-        method: "GET",
+      await axios.get(`${process.env.REACT_APP_BASE_URL}/user/current-user`, {
         headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
           "Authorization": "Bearer " + JSON.parse(localStorage.getItem('token-info')),
         },
+      }).then((res) => {
+        if (res.data.title === "Unauthorized") {
+          localStorage.clear();
+          window.location.href = "/";
+          return;
+        }
+        if (res.data) {
+          setState("Logout");
+          setUser("Welcome " + res.data.fname);
+          setShowButton(true); // Show the button when logged in
+        }
+      }).catch((err) => {
+        console.log(err);
       });
-      res = await res.json();
-      if (res.title === "Unauthorized") {
-        localStorage.clear();
-        window.location.href = "/";
-      };
-      if (res) {
-        setState("Logout");
-        setUser("Welcome " + res.fname);
-        setShowButton(true); // Show the button when logged in
-      }
     }
     else {
       setState("Login");

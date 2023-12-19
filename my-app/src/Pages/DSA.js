@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../Components/Navbar'
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 export default function DSA() {
   const [admin, setadmin] = useState("NO");
   const [visible, setvisible] = useState(false);
@@ -8,6 +9,7 @@ export default function DSA() {
   const [description, setDescription] = useState("");
   const [difficulty, setDifficulty] = useState("");
   const [link, setLink] = useState("");
+  const [data, setData] = useState([]);
   useEffect(() => {
     CurrentUser();
     GetAll();
@@ -16,29 +18,28 @@ export default function DSA() {
   }, []);
   async function CurrentUser() {
     if (localStorage.getItem('token-info')) {
-      let res = await fetch("/user/current-user", {
-        method: "GET",
+      await axios.get(`${process.env.REACT_APP_BASE_URL}/user/current-user`, {
         headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
           "Authorization": "Bearer " + JSON.parse(localStorage.getItem('token-info')),
         },
-      });
-      res = await res.json();
-      if (res.title === "Unauthorized") {
-        localStorage.clear();
-        window.location.href = "/";
-        return;
-      }
-      if (res.role === "admin") {
+      }).then((res) => {
+        if (res.data.title === "Unauthorized") {
+          localStorage.clear();
+          window.location.href = "/";
+          return;
+        }
+        if (res.data.role === "admin") {
 
-        setadmin("YES");
-        setvisible(true);
-      }
-      else {
-        setadmin("NO");
-        setvisible(false);
-      }
+          setadmin("YES");
+          setvisible(true);
+        }
+        else {
+          setadmin("NO");
+          setvisible(false);
+        }
+      }).catch((err) => {
+        console.log(err);
+      });
     }
 
   }
@@ -54,37 +55,32 @@ export default function DSA() {
 
   }
   async function createPost() {
-    console.log("create post");
-    console.log(title, description, difficulty, link);
     let item = { "Title": title, "Description": description, "difficulty": difficulty, "link": link }
-    let result = await fetch("/post/create", {
-      method: 'POST',
+
+    await axios.post(`${process.env.REACT_APP_BASE_URL}/post/create`, {
       headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
         "Authorization": "Bearer " + JSON.parse(localStorage.getItem('token-info')),
       },
       body: JSON.stringify(item)
-    });
-
-    result = await result.json();
-    console.log(result);
-    if (result.title === "post created") {
-      alert("Post created successfully");
-    }
-    else if (result.message === "Title already used") {
-      alert("Title already used");
-    }
+    })
+      .then((res) => {
+        if (res.data.title === "post created") {
+          alert("Post created successfully");
+        }
+        else if (res.data.message === "Title already used") {
+          alert("Title already used");
+        }
+      }).catch((err) => {
+        console.log(err);
+      });
   }
-
-  const [data, setData] = useState([]);
   async function GetAll() {
-    let url = "/post/";
-    const response = await fetch(url);
-    const ques = await response.json();
-
-    setData(ques);
-
+    let url = `${process.env.REACT_APP_BASE_URL}/post/`;
+    await axios.get(url).then((res) => {
+      setData(res.data);
+    }).catch((err) => {
+      console.log(err);
+    });
   }
   return (
     <>

@@ -1,24 +1,12 @@
 import React from 'react';
 import Navbar from '../Components/Navbar';
 import '../Components/Styles/Home.css';
-import Footer from '../Components/Footer';
 import EventCard from '../Components/EventCard';
 import { event1img } from '../Components/EventImages';
 import { event2img } from '../Components/EventImages';
 import PrevEventCard from '../Components/PrevEventCard';
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 export default function Home() {
-
-  const slideLeft = () => {
-    var slider = document.getElementById('slider');
-    slider.scrollLeft = slider.scrollLeft - 600;
-  };
-  const slideRight = () => {
-    var slider = document.getElementById('slider');
-    slider.scrollLeft = slider.scrollLeft + 600;
-  };
-
   return (
     <div className='min-h-[85vh]'>
       <Navbar />
