@@ -30,24 +30,22 @@ function DSADetail() {
   }
 
   async function addComment() {
-    console.log("add comment");
-
     if (localStorage.getItem("token-info") == null) {
       alert("Please Login First");
       return;
     }
-
     let postId = data._id;
     if (text === "") {
       alert("Cannot post empty comment");
       return;
     }
-    let item = { postId, text };
     await axios.post(`${process.env.REACT_APP_BASE_URL}/post/comment`, {
+      "postId": postId,
+      "text": text
+    },{
       headers: {
         "Authorization": "Bearer " + JSON.parse(localStorage.getItem('token-info'))
       },
-      body: JSON.stringify(item)
     }).then((res) => {
       res.data.title === "comment added" ? alert("Comment Added Successfully") : alert("Error Occured");
       Get();
