@@ -16,8 +16,8 @@ const postSchema = new mongoose.Schema({
     difficulty:{
         type:String,
         required:[true,"IMPORTANT"],
-        enum:["Easy","Medium","Hard"],
-        default:"Meduim",     
+        enum:["easy","medium","hard"],
+        default:"meduim",     
     },
     link:{
         type:String,
