@@ -54,7 +54,9 @@ export default function DSA() {
     }
 
   }
+
   async function createPost() {
+    console.log(title, description, difficulty, link);
     await axios.post(`${process.env.REACT_APP_BASE_URL}/post/create`, {
       "Title": title,
       "Description": description,
@@ -66,6 +68,7 @@ export default function DSA() {
       },
 
     }).then((res) => {
+      console.log(res);
       if (res.data.title === "post created") {
         alert("Post created successfully");
       }
@@ -76,6 +79,8 @@ export default function DSA() {
       console.log(err);
     });
   }
+
+
   async function GetAll() {
     let url = `${process.env.REACT_APP_BASE_URL}/post/`;
     await axios.get(url).then((res) => {
