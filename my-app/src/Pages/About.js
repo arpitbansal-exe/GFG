@@ -1,14 +1,12 @@
 import React from 'react'
-import Navbar from '../Components/Navbar'
 import Logo from "../Assets/Logo.png"
 export default function About() {
   return (
     <>
 
       <div className=' min-h-[85vh]'>
-        <Navbar />
         <div className="flex flex-col md:flex-row">
-          <div><img src={Logo} alt="" srcset="" /></div>
+          <div><img src={Logo} alt="" srcSet="" /></div>
           
           <div className='flex items-center'>
             <div className='ml-5'>

@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from '../Components/Navbar';
 import '../Components/Styles/Home.css';
 import EventCard from '../Components/EventCard';
 import { event1img } from '../Components/EventImages';
@@ -8,8 +7,7 @@ import PrevEventCard from '../Components/PrevEventCard';
 
 export default function Home() {
   return (
-    <div className='min-h-[85vh]'>
-      <Navbar />
+    <div className='min-h-[65vh] max-w-full'>
         <div className="wrapper p-4">
           <p className="line__1">Conquering <span className="green-text">DSA.</span></p>
           <p className="line__2">Creating with <span className="green-text">Web-Dev.</span></p>

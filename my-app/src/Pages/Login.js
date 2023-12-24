@@ -16,7 +16,7 @@ export default function Login() {
   const navigate = useNavigate();
 
   async function login() {
-    await axios.post(`${process.env.REACT_APP_BASE_URL}/user/signin`, {
+    await axios.post(`${process.env.REACT_APP_SERVER_BASE_URL}/user/signin`, {
       "email": email,
       "password": password
     }).then((res) => {
@@ -36,7 +36,7 @@ export default function Login() {
   async function createAccount() {
     let role = "user";
     let info = { fname, lname, email, password, confirmPassword, role, year, enrollmentNo };
-    await axios.post(`${process.env.REACT_APP_BASE_URL}/user/signup`, {
+    await axios.post(`${process.env.REACT_APP_SERVER_BASE_URL}/user/signup`, {
       "fname": fname,
       "lname": lname,
       "email": email,

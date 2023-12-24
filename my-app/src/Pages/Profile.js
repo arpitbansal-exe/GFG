@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from '../Components/Navbar';
 import axios from 'axios';
 
 export default function Profile() {
@@ -15,7 +14,7 @@ export default function Profile() {
 
   async function CurrentUser() {
     if (localStorage.getItem('token-info')) {
-      await axios.get(`${process.env.REACT_APP_BASE_URL}/user/current-user`, {
+      await axios.get(`${process.env.REACT_APP_SERVER_BASE_URL}/user/current-user`, {
         headers: {
           "Authorization": "Bearer " + JSON.parse(localStorage.getItem('token-info')),
         },
@@ -42,7 +41,6 @@ export default function Profile() {
 
   return (
     <div className='min-h-[85vh]'>
-    <Navbar />
     <div className='grid grid-flow-row mx-10'>
     <div>Fname: {fname}</div>
     <div>Lname: {lname}</div>
