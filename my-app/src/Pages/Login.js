@@ -5,25 +5,41 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 export default function Login() {
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [fname, setFname] = useState("");
-  const [lname, setLname] = useState("");
-  const [year, setYear] = useState("");
-  const [enrollmentNo, setEnrollmentNo] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [SigninUser, setSigninUser] = useState({
+    email: "",
+    password: ""
+  });
+  const [SignupUser, setSignupUser] = useState({
+    fname: "",
+    lname: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    year: "",
+    enrollmentNo: "",
+    role: "user"
+  });
 
   const navigate = useNavigate();
 
-  async function login() {
+  const handleChangesignin = (e) => {
+    setSigninUser({ ...SigninUser, [e.target.name]: e.target.value });
+  };
+
+  const handleChangeSignup = (e) => {
+    setSigninUser({ ...SigninUser, [e.target.name]: e.target.value });
+  };
+
+  const handleSignin = async (e) => {
+    e.preventDefault();
     await axios.post(`${process.env.REACT_APP_SERVER_BASE_URL}/user/signin`, {
-      "email": email,
-      "password": password
-    }).then((res) => {
-      console.log(res);
+      ...SigninUser
+    }
+    ).then((res) => {
       if (res.data.title === "Signin sucsessfull") {
         localStorage.setItem("token-info", JSON.stringify(res.data.token));
-        navigate('/home');
+        navigate('/');
       }
       else {
         alert("Invalid Credentials");
@@ -31,21 +47,12 @@ export default function Login() {
     }).catch((err) => {
       console.log(err);
     });
-
   }
-  async function createAccount() {
-    let role = "user";
-    let info = { fname, lname, email, password, confirmPassword, role, year, enrollmentNo };
+
+  const handleSignup = async (e) => {
+    e.preventDefault();
     await axios.post(`${process.env.REACT_APP_SERVER_BASE_URL}/user/signup`, {
-      "fname": fname,
-      "lname": lname,
-      "email": email,
-      "password": password,
-      "confirmPassword": confirmPassword,
-      "role": role,
-      "year": year,
-      "enrollmentNo": enrollmentNo
-      
+      ...setSignupUser
     }).then((res) => {
       if (res.data.messgae === "User already exists") {
         alert("User already exists");
@@ -60,7 +67,7 @@ export default function Login() {
       else {
         alert("Invalid Credentials");
       }
-      
+
 
     }).catch((err) => {
       console.log(err);
@@ -75,20 +82,24 @@ export default function Login() {
           <img src={Logo} alt="" />
         </div>
         <div className={Style.login}>
+
+          {/* Login Form */}
+          <form onSubmit={handleSignin} className='w-full flex flex-col items-center'>
           <h3 className={Style.tile}>User Login</h3>
-          <div className={Style.text_input}>
-            <i className="ri-user-fill"></i>
-            <input className={Style.inputs} type="email" placeholder="Username" onChange={(e) => setEmail(e.target.value)} />
-          </div>
-          <div className={Style.text_input}>
-            <i className="ri-lock-fill"></i>
-            <input className={Style.inputs} type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-          </div>
-          <button className={Style.login_btn} onClick={login}>LOGIN</button>
+            <div className={Style.text_input}>
+              <i className="ri-user-fill"></i>
+              <input className={Style.inputs} type="email" name='email' placeholder="Username" onChange={handleChangesignin} />
+            </div>
+            <div className={Style.text_input}>
+              <i className="ri-lock-fill"></i>
+              <input className={Style.inputs} type="password" name='password' placeholder="Password" onChange={handleChangesignin} />
+            </div>
+            <button className={Style.login_btn} type='submit' >LOGIN</button>
+          </form>
           <Link to="/resetPassword" className={Style.forgot}>Forgot Username/Password?</Link>
           <div className={Style.create}>
-            <Link onClick={createAccount}>Create Your Account</Link>
-            <i className="ri-arrow-right-fill"></i>
+            {/* <Link onClick={createAccount}>Create Your Account</Link>
+            <i className="ri-arrow-right-fill"></i> */}
           </div>
         </div>
       </div>

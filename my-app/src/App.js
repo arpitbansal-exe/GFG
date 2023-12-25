@@ -23,7 +23,7 @@ const App = () => {
       {!isLoginPage && <Navbar />}
       <Routes>
         <Route index element={<Home />} />
-        <Route exact path="home" element={<Home />} />
+        <Route exact path="/" element={<Home />} />
         <Route exact path="dsa" element={<DSA />} />
         <Route exact path="team" element={<Team />} />
         <Route exact path="about" element={<About />} />
