@@ -3,14 +3,16 @@ import Logo from '../Assets/Logo.png';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
+import clsx from 'clsx';
 export default function Navbar() {
   const [user, setUser] = useState("Welcome Geek");
   const [state, setState] = useState("Login");
   const [showButton, setShowButton] = useState(false); // State for button animation
-
+  const location = useLocation();
+    const isLogin = location.pathname === '/login';
   useEffect(() => {
     CurrentUser();
-  }, []);
+  }, [isLogin]);
 
   async function CurrentUser() {
     if (localStorage.getItem('token-info') && localStorage.getItem('token-info')!==undefined ) {
@@ -47,13 +49,12 @@ export default function Navbar() {
       window.location.href = "/";
     }
   }
-  const location = useLocation();
-    const isLogin = location.pathname === '/login';
-    if(isLogin){
-        return null;
-    }
+    // if(isLogin){
+    //     return null;
+    // }
+    const classes = clsx('navbar bg-base-100', { 'hidden': isLogin });
   return (
-    <div className="navbar bg-base-100">
+    <div className={classes}>
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
