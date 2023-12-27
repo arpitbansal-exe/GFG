@@ -37,8 +37,8 @@ const PrevEventCard = ({ images, text }) => {
         <div className='w-max-full h-[220px] m-4 rounded-2xl shadow-xl relative flex-shrink-0' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
             <div style={{backgroundImage: `url(${imgarray[current].url})`}} className='w-full h-full rounded-2xl bg-center bg-cover duration-500 '>
 
-            <div className="absolute inset-0 bg-green-700 rounded-2xl transition-opacity duration-300 opacity-100 hover:opacity-0 " >
-                <div className='title font-bold text-white text-xl mt-5 ml-5'>{text}</div>
+            <div className="absolute inset-0 rounded-2xl transition-opacity duration-300 opacity-100 hover:opacity-0 " >
+                <div className='title font-bold text-[#FFFBF5] text-xl mt-5 ml-5' style={{ textShadow: '1px 1px 3px rgba(50, 50,50, 0.8)' }}>{text}</div>
             </div> 
                 
             </div>
