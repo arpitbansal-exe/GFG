@@ -1,4 +1,3 @@
-
 import React from "react";
 import Home from "./Pages/Home";
 import NoPage from "./Pages/NoPage";
@@ -14,26 +13,27 @@ import Footer from "./Components/Footer";
 import EventRegister from "./Pages/EventRegister";
 import Navbar from "./Components/Navbar";
 
-
 const App = () => {
-  const isLoginPage = window.location.pathname === '/login';
-
   return (
     <BrowserRouter>
-      {!isLoginPage && <Navbar />}
+
+      <nav>
+        <Navbar />
+      </nav>
       <Routes>
         <Route index element={<Home />} />
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="dsa" element={<DSA />} />
-        <Route exact path="team" element={<Team />} />
-        <Route exact path="about" element={<About />} />
-        <Route exact path="login" element={<Login />} />
-        <Route exact path="profile" element={<Profile />} />
-        <Route exact path="register" element={<EventRegister />} />
-        <Route exact path="/dsa/:Title" element={<DSADetail />} />
+        <Route path="dsa" element={<DSA />} />
+        <Route path="team" element={<Team />} />
+        <Route path="about" element={<About />} />
+        <Route path="login" element={<Login />} />
+        <Route path="profile" element={<Profile />} />
+        <Route path="register" element={<EventRegister />} />
+        <Route path="/dsa/:Title" element={<DSADetail />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
-      {!isLoginPage && <Footer />}
+        <footer>
+          <Footer />
+        </footer>
     </BrowserRouter>
   );
 };

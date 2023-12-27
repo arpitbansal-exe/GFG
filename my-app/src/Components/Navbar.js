@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import Logo from '../Assets/Logo.png';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import { useLocation } from 'react-router-dom';
 export default function Navbar() {
   const [user, setUser] = useState("Welcome Geek");
   const [state, setState] = useState("Login");
@@ -13,7 +13,7 @@ export default function Navbar() {
   }, []);
 
   async function CurrentUser() {
-    if (localStorage.getItem('token-info')) {
+    if (localStorage.getItem('token-info') && localStorage.getItem('token-info')!==undefined ) {
       await axios.get(`${process.env.REACT_APP_SERVER_BASE_URL}/user/current-user`, {
         headers: {
           "Authorization": "Bearer " + JSON.parse(localStorage.getItem('token-info')),
@@ -47,6 +47,11 @@ export default function Navbar() {
       window.location.href = "/";
     }
   }
+  const location = useLocation();
+    const isLogin = location.pathname === '/login';
+    if(isLogin){
+        return null;
+    }
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">

@@ -23,7 +23,7 @@ export default function DSA() {
     GetAll();
   }, []);
   async function CurrentUser() {
-    if (localStorage.getItem('token-info')) {
+    if (localStorage.getItem('token-info')  && localStorage.getItem('token-info')!==undefined) {
       await axios.get(`${process.env.REACT_APP_SERVER_BASE_URL}/user/current-user`, {
         headers: {
           "Authorization": "Bearer " + JSON.parse(localStorage.getItem('token-info')),

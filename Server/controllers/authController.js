@@ -4,22 +4,17 @@ import User from "../models/Users.js";
 import jwt from "jsonwebtoken";
 
 const signup= asyncHandler(async(req, res) => {
-
     const {fname, lname, email, password, confirmPassword, role, year, enrollmentNo} = req.body;
     if(!fname ||!lname|| !email || !password || !confirmPassword || !role || !year || !enrollmentNo){
-        res.status(400);
-        throw new Error("All fields are required");
+        res.status(201).json({title:"Validation Error",message:"Missing Credentials"});
     }
     const emailUsed=await User.findOne({email});
     if(emailUsed){
-        res.status(400);
-        throw new Error("User already exists");
+        res.status(201).json({title:"Validation Error",message:"User already exists"});
     }
-    if(password!==confirmPassword){
-        res.status(400);
-        throw new Error("Passwords do not match");
+    else if(password!==confirmPassword){
+        res.status(201).json({title:"Validation Error",message:"Passwords do not match"});
     }
-
     const hashedPassword=await bcrypt.hash(password, 10);
     const user= await User.create({
         fname,
@@ -30,9 +25,9 @@ const signup= asyncHandler(async(req, res) => {
         year,
         enrollmentNo
     });
-
     if(user){
-        res.status(201).json({title: "Signup successfull", email:user.email, role:user.role, fname:user.fname,lname:user.lname, year:user.year, enrollmentNo:user.enrollmentNo});
+        const token=jwt.sign({id:user._id,email:user.email,username:user.fname}, process.env.JWT_SECRET, {expiresIn:"1d"});
+        res.status(200).json({title:"Signup successfull",token});
         
     }else{
         res.status(400);

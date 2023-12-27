@@ -1,13 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../Assets/Logo.png'
-
+import { useLocation } from 'react-router-dom';
 export default function Footer() {
+    const location = useLocation();
+    const isLogin = location.pathname === '/login';
+    if(isLogin){
+        return null;
+    }
     return (
         <footer className="footer w-full p-10 bg-neutral text-neutral-content bottom-0 ">
             <aside>
                 <img width="50" height="50" src={logo} alt='GFG MIT ADT'></img>
-                <p>GeeksforGeeks SC MIT-ADT<br />Empowering students</p>
+                <p>GeeksforGeeks SC MIT-ADT<br />Code, Connect, Create.</p>
             </aside>
             <nav>
                 <header className="footer-title">Connect with us</header>
