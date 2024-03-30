@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import app from './app.js';
 import dotenv from 'dotenv';
-import e from 'express';
+import express from 'express';
 dotenv.config();
 
 mongoose.connect(process.env.MONGODB_URL ,{

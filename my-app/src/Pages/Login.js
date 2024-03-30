@@ -76,7 +76,7 @@ export default function Login() {
 
 
   return (
-    <div className="h-screen flex justify-center items-center bg-[#5BAA68]">
+    <div className="min-h-screen flex justify-center items-center bg-[#5BAA68]">
       <div className="md:w-1/2 mx-2  md:h-[60vh]  grid grid-cols-1 md:grid-cols-2 shadow-xl rounded-3xl bg-white overflow-hidden ">
         <div className='flex justify-center items-center w-full h-full'>
           <img src={Logo} className='align-middle' alt="" />
